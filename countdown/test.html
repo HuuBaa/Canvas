@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <style>
+    #canvas1 {
+        border: 1px solid #ccc;
+    }
+    
+    div {
+        width: 800px;
+        margin: 0 auto;
+    }
+    </style>
+</head>
+
+<body>
+    <div>
+        <canvas id=canvas1 width="800" height="600">
+        </canvas>
+    </div>
+    <script>
+    var deltaTime = 0;
+    var lastTime = Date.now();
+
+    var canvas = document.getElementById("canvas1");
+    var context = canvas.getContext("2d");
+    var ballx = 0;
+    var bally = 0;
+    var vx = 2;
+    var vy = 0;
+    var g = 2;
+
+
+    function draw() {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.beginPath();
+        context.arc(ballx, bally, 10, 0, 2 * Math.PI, false);
+        context.fillStyle = "#00f"
+        context.fill();
+
+    }
+
+
+    setInterval(function() {
+        draw();
+
+        var now = Date.now();
+        deltaTime = now - lastTime;
+        lastTime = now;
+
+        ballx = ballx + vx;
+        bally = bally + vy;
+        vy = vy + g;
+        if (bally > 600 - 10) {
+            bally = 590;
+            if (Math.abs(vy) > 0.5) {
+                vy = -vy * 0.55;
+                g = g * 0.9;
+            } else {
+                vy = 0;
+                g=0;
+            }
+        }
+        console.log(vy)
+
+    }, 16)
+    </script>
+</body>
+
+</html>
