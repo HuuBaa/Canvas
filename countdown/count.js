@@ -1,13 +1,11 @@
-
-
 var can = document.getElementById("canvas1");
 var ctx = can.getContext("2d");
 
-var WIDTH = document.documentElement.clientWidth-20;
-var HEIGHT = document.documentElement.clientHeight-20;
-var RADIUS = Math.round(WIDTH*4/5/115)-1;
-var ML = Math.round(WIDTH/5/2);
-var MT = Math.round(HEIGHT/5);
+var WIDTH = document.documentElement.clientWidth - 20;
+var HEIGHT = document.documentElement.clientHeight - 20;
+var RADIUS = Math.round(WIDTH * 4 / 5 / 115) - 1;
+var ML = Math.round(WIDTH / 5 / 2);
+var MT = Math.round(HEIGHT / 5);
 
 
 //第一次载入时获得当前时间，后续用于记录时间变化
@@ -42,40 +40,40 @@ function draw() {
     ctx.clearRect(0, 0, WIDTH, HEIGHT);
     //绘制数字开始的位置   (间隔数+4*冒号数+7*数字的数量)*(半径+1)*2
     //小时 
-    drawDigit((0 + 4 * 0 + 7 * 0) * (1 + RADIUS) * 2+ML, MT, parseInt(nexthour / 10)); //十位
-    drawDigit((1 + 4 * 0 + 7 * 1) * (1 + RADIUS) * 2+ML, MT, parseInt(nexthour % 10)); //个位
+    drawDigit((0 + 4 * 0 + 7 * 0) * (1 + RADIUS) * 2 + ML, MT, parseInt(nexthour / 10)); //十位
+    drawDigit((1 + 4 * 0 + 7 * 1) * (1 + RADIUS) * 2 + ML, MT, parseInt(nexthour % 10)); //个位
     //冒号
-    drawDigit((2 + 4 * 0 + 7 * 2) * (1 + RADIUS) * 2+ML, MT, 10);
+    drawDigit((2 + 4 * 0 + 7 * 2) * (1 + RADIUS) * 2 + ML, MT, 10);
     //分钟
-    drawDigit((3 + 4 * 1 + 7 * 2) * (1 + RADIUS) * 2+ML, MT, parseInt(nextminute / 10));
-    drawDigit((4 + 4 * 1 + 7 * 3) * (1 + RADIUS) * 2+ML, MT, parseInt(nextminute % 10));
+    drawDigit((3 + 4 * 1 + 7 * 2) * (1 + RADIUS) * 2 + ML, MT, parseInt(nextminute / 10));
+    drawDigit((4 + 4 * 1 + 7 * 3) * (1 + RADIUS) * 2 + ML, MT, parseInt(nextminute % 10));
     //冒号
-    drawDigit((5 + 4 * 1 + 7 * 4) * (1 + RADIUS) * 2+ML, MT, 10);
+    drawDigit((5 + 4 * 1 + 7 * 4) * (1 + RADIUS) * 2 + ML, MT, 10);
     //秒钟
-    drawDigit((6 + 4 * 2 + 7 * 4) * (1 + RADIUS) * 2+ML, MT, parseInt(nextsecond / 10));
-    drawDigit((7 + 4 * 2 + 7 * 5) * (1 + RADIUS) * 2+ML, MT, parseInt(nextsecond % 10));
+    drawDigit((6 + 4 * 2 + 7 * 4) * (1 + RADIUS) * 2 + ML, MT, parseInt(nextsecond / 10));
+    drawDigit((7 + 4 * 2 + 7 * 5) * (1 + RADIUS) * 2 + ML, MT, parseInt(nextsecond % 10));
 
     //判断时间的变化，进行小球的添加
     if (parseInt(nextsecond % 10) != parseInt(cursecond % 10)) {
-        addBalls((7 + 4 * 2 + 7 * 5) * (1 + RADIUS) * 2+ML, MT, parseInt(nextsecond % 10));
+        addBalls((7 + 4 * 2 + 7 * 5) * (1 + RADIUS) * 2 + ML, MT, parseInt(nextsecond % 10));
         if (parseInt(nextsecond / 10) != parseInt(cursecond / 10)) {
-            addBalls((6 + 4 * 2 + 7 * 4) * (1 + RADIUS) * 2+ML, MT, parseInt(nextsecond / 10));
+            addBalls((6 + 4 * 2 + 7 * 4) * (1 + RADIUS) * 2 + ML, MT, parseInt(nextsecond / 10));
         }
         cursecond = nextsecond;
     }
 
     if (parseInt(nextminute % 10) != parseInt(curminute % 10)) {
-        addBalls((4 + 4 * 1 + 7 * 3) * (1 + RADIUS) * 2+ML, MT, parseInt(nextminute % 10));
+        addBalls((4 + 4 * 1 + 7 * 3) * (1 + RADIUS) * 2 + ML, MT, parseInt(nextminute % 10));
         if (parseInt(nextminute / 10) != parseInt(curminute / 10)) {
-            addBalls((3 + 4 * 1 + 7 * 2) * (1 + RADIUS) * 2+ML, MT, parseInt(nextminute / 10));
+            addBalls((3 + 4 * 1 + 7 * 2) * (1 + RADIUS) * 2 + ML, MT, parseInt(nextminute / 10));
         }
         curminute = nextminute;
     }
 
     if (parseInt(nexthour % 10) != parseInt(curhour % 10)) {
-        addBalls((1 + 4 * 0 + 7 * 1) * (1 + RADIUS) * 2+ML, MT, parseInt(nexthour % 10));
+        addBalls((1 + 4 * 0 + 7 * 1) * (1 + RADIUS) * 2 + ML, MT, parseInt(nexthour % 10));
         if (parseInt(nexthour / 10) != parseInt(curhour / 10)) {
-            addBalls((0 + 4 * 0 + 7 * 0) * (1 + RADIUS) * 2+ML, MT, parseInt(nexthour / 10));
+            addBalls((0 + 4 * 0 + 7 * 0) * (1 + RADIUS) * 2 + ML, MT, parseInt(nexthour / 10));
         }
         curhour = nexthour;
     }
@@ -170,3 +168,5 @@ function drawDigit(x, y, num) {
 setInterval(function() {
     draw();
 }, 16);
+
+
